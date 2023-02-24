@@ -9,9 +9,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Enter Routes Here
-
-
 db.once('open', () => {
     app.listen(PORT, () => {
         console.log(`Social Network API server running on port ${PORT}!`);
