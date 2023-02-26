@@ -9,8 +9,6 @@ connection.once('open', async () => {
     
     await User.deleteMany({});
 
-    await Thought.deleteMany({});
-
     // create empty array for users created with faker
     const users = [];
 
@@ -21,22 +19,9 @@ connection.once('open', async () => {
         });
     }
 
-    // create empty array for thoughts created with faker
-    const thoughts = [];
-
-    for (let i = 0; i < 10; i++) {
-        thoughts.push({
-            thoughtText: faker.lorem.sentence(),
-            username: faker.internet.userName(),
-            createdAt: new Date(),
-        });
-    }
-
     await User.collection.insertMany(users);
-    await Thought.collection.insertMany(thoughts);
 
     console.table(users);
-    console.table(thoughts);
     console.info(`seeded ${users.length} users`);
     process.exit(0);
     
