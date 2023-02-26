@@ -1,8 +1,6 @@
-const { Schema, model } = require("mogoose");
+const { Schema, model } = require("mongoose");
 const dayjs = require("dayjs");
 
-
-const Schema = mongoose.Schema;
 
 const reactionSchema = new Schema(
   {
