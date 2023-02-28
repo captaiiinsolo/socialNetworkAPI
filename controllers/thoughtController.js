@@ -9,8 +9,8 @@ module.exports = {
   },
 
   // get one thought by id
-  getThoughtById(req, res,) {
-    Thought.findOne({ _id: req.params.thoughtId })
+  getThoughtById( { params }, res) {
+    Thought.findOne({ _id: params.thoughtId })
       .select("-__v")
       .then( async (dbThoughtData) => {
         if (!dbThoughtData) {
