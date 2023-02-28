@@ -11,6 +11,7 @@ module.exports = {
   // get one user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
+      .lean()
       .populate({
         path: "thoughts",
         select: "-__v",

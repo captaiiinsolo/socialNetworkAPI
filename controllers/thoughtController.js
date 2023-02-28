@@ -4,13 +4,15 @@ module.exports = {
   // get all thoughts
   getAllThoughts(req, res) {
     Thought.find()
+    .lean()
     .then((thoughts) => res.json(thoughts))
     .catch((err) => res.status(500).json(err));
   },
 
   // get one thought by id
   getThoughtById( { params }, res) {
-    Thought.findOne({ _id: params.thoughtId })
+    Thought.findOne({ _id: params.id })
+      .lean()
       .select("-__v")
       .then( async (dbThoughtData) => {
         if (!dbThoughtData) {
