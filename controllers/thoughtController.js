@@ -1,24 +1,18 @@
-const { ObjectId } = require("mongoose").Types;
 const { Thought, User } = require("../models");
 
 module.exports = {
   // get all thoughts
   getAllThoughts(req, res) {
-    Thought.find({})
-      .select("-__v")
-      .sort({ _id: -1 })
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json(err);
-      });
+    Thought.find()
+    .then((thoughts) => res.json(thoughts))
+    .catch((err) => res.status(500).json(err));
   },
 
   // get one thought by id
-  getThoughtById({ params }, res) {
-    Thought.findOne({ _id: params.id })
+  getThoughtById(req, res,) {
+    Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
-      .then((dbThoughtData) => {
+      .then( async (dbThoughtData) => {
         if (!dbThoughtData) {
           res.status(404).json({ message: "No thought found with this id!" });
           return;
